@@ -1,0 +1,61 @@
+package com.elemetAknowlegment.ServiceImp;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.elemetAknowlegment.Entity.orderHeader;
+import com.elemetAknowlegment.Repository.orderHeaderRepository;
+import com.elemetAknowlegment.Service.OrderService;
+
+import jakarta.persistence.criteria.Order;
+@Service
+public class orderServiceImpl implements OrderService{
+
+	@Autowired
+	private orderHeaderRepository OrderHeaderRepo;
+	
+	@Override
+	public orderHeader 
+	addorder(orderHeader Order) {
+		
+	orderHeader order = OrderHeaderRepo.save(Order);
+	
+		return order;
+	}
+
+	@Override
+	public List<Order> getAllorder() {
+		List<orderHeader> findAll = OrderHeaderRepo.findAll();
+		return null;
+	}
+
+	@Override
+	public Order getOrderById(Integer orderId) {
+		Optional<orderHeader> findById = OrderHeaderRepo.findById(orderId);
+		if(findById.isPresent()){
+			orderHeader orderHeader = findById.get();
+			return null;
+			
+		}
+		return null;
+	}
+
+	@Override
+	public boolean deleteOrderById(Integer orderId) {
+		Optional<orderHeader> findById = OrderHeaderRepo.findById(orderId);
+	    if(findById.isPresent()) {
+	    	orderHeader orderHeader = findById.get();
+	   // 	OrderHeaderRepo.save(OrderHeader));
+	    	return true;
+	    }
+		
+			
+		
+		return false;
+	}
+	
+
+}

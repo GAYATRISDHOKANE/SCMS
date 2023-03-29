@@ -1,0 +1,58 @@
+package com.elemetAknowlegment.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.elemetAknowlegment.Entity.orderHeader;
+import com.elemetAknowlegment.Service.OrderService;
+
+import ch.qos.logback.core.model.Model;
+import jakarta.persistence.criteria.Order;
+
+@RestController
+public class ServiceController {
+	@Autowired
+	private OrderService orderSer;
+
+	@PostMapping("/saveorder")
+	public orderHeader saveorder(@RequestBody orderHeader oheader) {
+		
+		orderHeader addorder = orderSer.addorder(oheader);
+		
+		return addorder;
+		
+	}
+	
+		
+	
+	
+	@GetMapping("/orders")
+	public List<com.elementsoftech.core.entity.OrderHeader> getAllorders(){
+		List<Order> allOrders = orderSer.getAllorder();
+		
+		return allOrders;
+	}
+	
+	@GetMapping("/orders/{id}")
+	public orderHeader getOrder(@PathVariable("id") int id) {
+		
+		orderHeader findById = orderSer.findById(id);
+		
+		return findById;
+	}
+	
+	@DeleteMapping("/orders/{id}")
+	public void deleteOrder(@PathVariable("id") int id) {
+		orderSer.deleteOrderById(id);
+	}
+	
+	
+}

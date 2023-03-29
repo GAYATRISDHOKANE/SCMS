@@ -1,0 +1,13 @@
+package com.aknowlegment.controller;
+
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.aknowlegment.entity.orderHeader;
+
+public class bsController {
+	
+	public orderHeader home(@RequestBody orderHeader order) {
+		return null;
+	}
+
+}

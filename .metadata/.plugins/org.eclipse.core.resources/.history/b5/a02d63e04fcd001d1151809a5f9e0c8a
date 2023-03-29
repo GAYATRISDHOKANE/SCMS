@@ -1,0 +1,5 @@
+package com.aknowlegment.entity;
+
+public class ProductInfo {
+
+}

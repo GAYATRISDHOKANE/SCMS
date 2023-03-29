@@ -1,0 +1,101 @@
+package com.aknowlegment.entity;
+
+import java.time.LocalDate;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+@Entity
+public class AdDocuments {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	
+	private Long id;
+	private String userName;
+	private Long purchaseOrderNumbers;
+	@CreationTimestamp
+	private LocalDate documentsCreateDate;
+	private String acknowledgementsType;
+	
+	@OneToOne(cascade = (CascadeType.ALL))
+	private orderItems orderItems;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public Long getPurchaseOrderNumbers() {
+		return purchaseOrderNumbers;
+	}
+
+	public void setPurchaseOrderNumbers(Long purchaseOrderNumbers) {
+		this.purchaseOrderNumbers = purchaseOrderNumbers;
+	}
+
+	public LocalDate getDocumentsCreateDate() {
+		return documentsCreateDate;
+	}
+
+	public void setDocumentsCreateDate(LocalDate documentsCreateDate) {
+		this.documentsCreateDate = documentsCreateDate;
+	}
+
+	public String getAcknowledgementsType() {
+		return acknowledgementsType;
+	}
+
+	public void setAcknowledgementsType(String acknowledgementsType) {
+		this.acknowledgementsType = acknowledgementsType;
+	}
+
+	public orderItems getOrderItems() {
+		return orderItems;
+	}
+
+	public void setOrderItems(orderItems orderItems) {
+		this.orderItems = orderItems;
+	}
+
+	@Override
+	public String toString() {
+		return "AdDocuments [id=" + id + ", userName=" + userName + ", purchaseOrderNumbers=" + purchaseOrderNumbers
+				+ ", documentsCreateDate=" + documentsCreateDate + ", acknowledgementsType=" + acknowledgementsType
+				+ ", orderItems=" + orderItems + "]";
+	}
+
+	public AdDocuments(Long id, String userName, Long purchaseOrderNumbers, LocalDate documentsCreateDate,
+			String acknowledgementsType, com.aknowlegment.entity.orderItems orderItems) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.purchaseOrderNumbers = purchaseOrderNumbers;
+		this.documentsCreateDate = documentsCreateDate;
+		this.acknowledgementsType = acknowledgementsType;
+		this.orderItems = orderItems;
+	}
+
+	public AdDocuments() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+
+}

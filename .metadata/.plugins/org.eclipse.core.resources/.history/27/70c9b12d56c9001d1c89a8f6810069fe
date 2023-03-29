@@ -1,0 +1,37 @@
+package com.elemetAknowlegment.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.elemetAknowlegment.Entity.orderHeader;
+import com.elemetAknowlegment.Service.OrderService;
+
+import ch.qos.logback.core.model.Model;
+import jakarta.persistence.criteria.Order;
+
+@RestController
+public class ServiceController {
+	@Autowired
+	private OrderService orderSer;
+
+	@PostMapping("/saveorder")
+	public orderHeader saveorder(@RequestBody orderHeader oheader) {
+		
+		orderHeader addorder = orderSer.addorder(oheader);
+		
+		return addorder;
+		
+	}
+	@GetMapping("/viewOrder")
+	public String viewAllOrder(Model model) {
+		List<Order> allorder = orderSer.getAllorder();
+		 model.addAttribute("order",allorder);
+		return null;
+		
+	}
+}

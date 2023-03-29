@@ -1,0 +1,20 @@
+package com.aknowlegment.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.aknowlegment.entity.orderHeader;
+import com.aknowlegment.service.OrderService;
+
+public class Maincontroller {
+	@Autowired
+	private OrderService service;
+	
+	public orderHeader saveOrder(@RequestBody orderHeader order) {
+		
+		return order;
+		
+	}
+	
+
+}
